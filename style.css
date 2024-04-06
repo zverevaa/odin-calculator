@@ -40,7 +40,8 @@ body {
 }
 
 button {
-    flex: 1 0 30%;
+    flex: 1 0 25%;
+    font-size: 20px;
 }
 
 button:hover {
