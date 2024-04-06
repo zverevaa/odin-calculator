@@ -1,4 +1,24 @@
+let firstNum = 0;
+let secondNum = 0;
 let operator = "";
+let displayNum = "";
+
+const digits = document.querySelectorAll(".digit");
+const display = document.querySelector(".display");
+display.textContent = "0";
+
+const getDigit = (digit) => {
+    displayNum = makeDisplay(displayNum, digit.dataset.digit);
+    display.textContent = displayNum;
+};
+
+const makeDisplay = (displayNum, digit) => {
+    return (displayNum += digit);
+};
+
+digits.forEach((digit) =>
+    digit.addEventListener("click", () => getDigit(digit))
+);
 
 const add = (a, b) => {
     return a + b;
