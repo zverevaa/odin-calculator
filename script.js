@@ -16,6 +16,15 @@ const makeDisplay = (displayNum, digit) => {
     return (displayNum += digit);
 };
 
+//Clear display
+
+const clearDisplay = () => {
+    displayNum = "";
+    display.textContent = "0";
+};
+const clear = document.querySelector(".clear");
+clear.addEventListener("click", clearDisplay);
+
 digits.forEach((digit) =>
     digit.addEventListener("click", () => getDigit(digit))
 );
