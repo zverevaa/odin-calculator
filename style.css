@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.calculator {
+    background-color: #987794;
+    width: 300px;
+    height: 500px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.display {
+    background-color: #ECEAEC;
+    border-radius: 5px;
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    height: 300px
+    
+}
+
+button {
+    flex: 1 0 30%;
+}
+
+button:hover {
+    cursor: pointer;
+}
