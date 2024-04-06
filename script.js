@@ -1,11 +1,13 @@
-let firstNum = 0;
-let secondNum = 0;
+let firstNum = null;
+let secondNum = null;
+let prevOperator = "";
 let operator = "";
 let displayNum = "";
 
 const digits = document.querySelectorAll(".digit");
 const display = document.querySelector(".display");
 display.textContent = "0";
+const operators = document.querySelectorAll(".operator");
 
 const getDigit = (digit) => {
     displayNum = makeDisplay(displayNum, digit.dataset.digit);
@@ -46,17 +48,41 @@ const divide = (a, b) => {
 };
 
 const operate = (a, b, operator) => {
-    switch (operator) {
-        case "+":
-            add(a, b);
-            break;
-        case "-":
-            substract(a, b);
-            break;
-        case "*":
-            multiply(a, b);
-            break;
-        case "/":
-            divide(a, b);
+    if (firstNum === null) {
+        firstNum = parseInt(displayNum);
+        a = firstNum;
+        clearDisplay();
+    } else {
+        secondNum = parseInt(displayNum);
+        b = secondNum;
     }
+    if (prevOperator === "") {
+        prevOperator = operator;
+    } else {
+        switch (prevOperator) {
+            case "+":
+                firstNum = add(a, b);
+                break;
+            case "-":
+                firstNum = substract(a, b);
+                break;
+            case "*":
+                multiply(a, b);
+                break;
+            case "/":
+                divide(a, b);
+        }
+        prevOperator = operator;
+    }
+
+    clearDisplay();
+    display.textContent = firstNum;
+
+    console.log(firstNum);
 };
+
+operators.forEach((operator) =>
+    operator.addEventListener("click", () =>
+        operate(firstNum, secondNum, operator.textContent)
+    )
+);
