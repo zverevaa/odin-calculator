@@ -9,6 +9,7 @@ const display = document.querySelector(".display");
 display.textContent = "0";
 const operators = document.querySelectorAll(".operator");
 const remove = document.querySelector(".rm-last");
+const negative = document.querySelector(".tgl-negative");
 
 const getDigit = (digit) => {
     displayNum = makeDisplay(displayNum, digit.dataset.digit);
@@ -41,6 +42,22 @@ const removeLastDigit = () => {
 
 remove.addEventListener("click", removeLastDigit);
 
+//Toggle negative
+const toggleNegative = () => {
+    displayNum = display.textContent;
+
+    if (displayNum.includes("-")) {
+        displayNum = displayNum.substring(1);
+        firstNum = parseInt(displayNum);
+    } else {
+        displayNum = `-${displayNum}`;
+        firstNum = parseInt(displayNum);
+    }
+    display.textContent = displayNum;
+};
+
+negative.addEventListener("click", toggleNegative);
+
 digits.forEach((digit) =>
     digit.addEventListener("click", () => getDigit(digit))
 );
@@ -62,7 +79,6 @@ const divide = (a, b) => {
 };
 
 const percentage = (a, b) => {
-    let num = (a / 100) * b;
     return (a / 100) * b;
 };
 
