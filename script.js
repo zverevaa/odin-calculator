@@ -25,7 +25,11 @@ const clearDisplay = () => {
     display.textContent = "0";
 };
 const clear = document.querySelector(".clear");
-clear.addEventListener("click", clearDisplay);
+clear.addEventListener("click", () => {
+    clearDisplay();
+    firstNum = null;
+    secondNum = null;
+});
 
 digits.forEach((digit) =>
     digit.addEventListener("click", () => getDigit(digit))
@@ -48,6 +52,7 @@ const divide = (a, b) => {
 };
 
 const operate = (a, b, operator) => {
+    if (a === null && operator === "=") return; //Checks if there's anything to calculate
     if (firstNum === null) {
         firstNum = parseInt(displayNum);
         a = firstNum;
@@ -67,10 +72,11 @@ const operate = (a, b, operator) => {
                 firstNum = substract(a, b);
                 break;
             case "*":
-                multiply(a, b);
+                firstNum = multiply(a, b);
                 break;
             case "/":
-                divide(a, b);
+                secondNum === 0 ? (firstNum = "YOU DIED") : divide(a, b);
+                break;
         }
         prevOperator = operator;
     }
