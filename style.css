@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     
+}
+
+@font-face {
+    font-family: 'optimus princeps';
+    src: url('./fonts/OptimusPrinceps.ttf');
 }
 
 body {
@@ -21,6 +28,7 @@ body {
 }
 
 .display {
+    font-family: "Kode Mono";
     background-color: #ECEAEC;
     border-radius: 5px;
     height: 60px;
@@ -39,7 +47,7 @@ body {
     
 }
 
-button {
+button {  
     flex: 1 0 25%;
     font-size: 20px;
 }
