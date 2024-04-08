@@ -36,7 +36,10 @@ clear.addEventListener("click", () => {
 
 //Remove last digit
 const removeLastDigit = () => {
+    if (firstNum === null) return;
+    displayNum = firstNum.toString();
     displayNum = displayNum.slice(0, -1);
+    firstNum = parseInt(displayNum);
     display.textContent = displayNum;
 };
 
