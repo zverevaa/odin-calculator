@@ -52,8 +52,15 @@ const divide = (a, b) => {
     return a / b;
 };
 
+const percentage = (a, b) => {
+    let num = (a / 100) * b;
+    console.log(num);
+    return (a / 100) * b;
+};
+
 const operate = (a, b, operator) => {
     if (a === null && operator === "=") return; //Checks if there's anything to calculate
+
     if (firstNum === null) {
         firstNum = parseInt(displayNum);
         a = firstNum;
@@ -62,7 +69,13 @@ const operate = (a, b, operator) => {
         secondNum = parseInt(displayNum);
         b = secondNum;
     }
-    if (prevOperator === "") {
+
+    //Percentage button
+    if (operator === "%") {
+        firstNum = percentage(a, b);
+    }
+
+    if (prevOperator === "" || operator === "%") {
         prevOperator = operator;
     } else {
         switch (prevOperator) {
@@ -82,7 +95,7 @@ const operate = (a, b, operator) => {
         }
         prevOperator = operator;
     }
-
+    console.log(`here ${firstNum}`);
     clearDisplay();
     display.textContent = firstNum;
 
