@@ -54,7 +54,6 @@ const divide = (a, b) => {
 
 const percentage = (a, b) => {
     let num = (a / 100) * b;
-    console.log(num);
     return (a / 100) * b;
 };
 
@@ -89,13 +88,17 @@ const operate = (a, b, operator) => {
                 firstNum = multiply(a, b);
                 break;
             case "/":
-                secondNum === 0 ? (firstNum = "YOU DIED") : divide(a, b);
-                display.classList.add("you-died");
+                console.log(`${a} sup ${b}`);
+                if (secondNum === 0) {
+                    firstNum = "YOU DIED";
+                    display.classList.add("you-died");
+                } else {
+                    firstNum = divide(a, b);
+                }
                 break;
         }
         prevOperator = operator;
     }
-    console.log(`here ${firstNum}`);
     clearDisplay();
     display.textContent = firstNum;
 
