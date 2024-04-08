@@ -40,6 +40,13 @@ body {
     overflow: hidden;
 }
 
+.you-died {
+    font-family: "optimus princeps";
+    justify-content: center;
+    background-color: black;
+    color: red;
+}
+
 .buttons {
     display: flex;
     flex-wrap: wrap;

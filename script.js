@@ -29,6 +29,7 @@ clear.addEventListener("click", () => {
     clearDisplay();
     firstNum = null;
     secondNum = null;
+    display.classList.remove("you-died");
 });
 
 digits.forEach((digit) =>
@@ -76,6 +77,7 @@ const operate = (a, b, operator) => {
                 break;
             case "/":
                 secondNum === 0 ? (firstNum = "YOU DIED") : divide(a, b);
+                display.classList.add("you-died");
                 break;
         }
         prevOperator = operator;
