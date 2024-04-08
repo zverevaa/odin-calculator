@@ -8,6 +8,7 @@ const digits = document.querySelectorAll(".digit");
 const display = document.querySelector(".display");
 display.textContent = "0";
 const operators = document.querySelectorAll(".operator");
+const remove = document.querySelector(".rm-last");
 
 const getDigit = (digit) => {
     displayNum = makeDisplay(displayNum, digit.dataset.digit);
@@ -31,6 +32,14 @@ clear.addEventListener("click", () => {
     secondNum = null;
     display.classList.remove("you-died");
 });
+
+//Remove last digit
+const removeLastDigit = () => {
+    displayNum = displayNum.slice(0, -1);
+    display.textContent = displayNum;
+};
+
+remove.addEventListener("click", removeLastDigit);
 
 digits.forEach((digit) =>
     digit.addEventListener("click", () => getDigit(digit))
@@ -88,7 +97,6 @@ const operate = (a, b, operator) => {
                 firstNum = multiply(a, b);
                 break;
             case "/":
-                console.log(`${a} sup ${b}`);
                 if (secondNum === 0) {
                     firstNum = "YOU DIED";
                     display.classList.add("you-died");
@@ -101,8 +109,6 @@ const operate = (a, b, operator) => {
     }
     clearDisplay();
     display.textContent = firstNum;
-
-    console.log(firstNum);
 };
 
 operators.forEach((operator) =>
