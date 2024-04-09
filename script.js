@@ -28,9 +28,7 @@ const getDigit = (digit) => {
         displayNum = makeDisplay(displayNum, digit.dataset.digit);
         display.textContent = displayNum;
         if (firstNum !== null && display.textContent.includes(".")) {
-            console.log(display.textContent);
             firstNum = Number(display.textContent);
-            console.log(firstNum + "test");
         }
     }
 };
@@ -45,21 +43,24 @@ const clearDisplay = () => {
     displayNum = "";
     display.textContent = "0";
 };
-const clear = document.querySelector(".clear");
-clear.addEventListener("click", () => {
+
+const allClear = () => {
     clearDisplay();
     firstNum = null;
     secondNum = null;
     display.classList.remove("you-died");
     prevOperator = "";
     operator = "";
-});
+};
+const clear = document.querySelector(".clear");
+clear.addEventListener("click", allClear);
 
 //Remove last digit
 
 const removeLastDigit = () => {
     if (display.textContent === "0") return; // Checks if there's anything to delete
     if (firstNum && display.textContent === firstNum.toString()) return; // If there was a calculation, it doesn't let to edit the num
+
     displayNum = display.textContent;
     displayNum = displayNum.slice(0, -1);
     display.textContent = displayNum;
@@ -85,6 +86,32 @@ const toggleNegative = () => {
 
 negative.addEventListener("click", toggleNegative);
 
+//Keyboard input
+window.addEventListener("keydown", (e) => {
+    e.preventDefault();
+    const button = document.querySelector(`.digit[data-digit="${e.key}"]`);
+    if ((e.key >= 0 && e.key <= 9) || e.key === ".") {
+        getDigit(button);
+    }
+    switch (e.key) {
+        case "Backspace":
+            removeLastDigit();
+            break;
+        case "+":
+        case "-":
+        case "/":
+        case "*":
+            operate(firstNum, secondNum, e.key);
+            break;
+        case "Delete":
+            allClear();
+            break;
+        case "Enter":
+            operate(firstNum, secondNum, operator);
+            break;
+    }
+});
+//
 digits.forEach((digit) =>
     digit.addEventListener("click", () => getDigit(digit))
 );
