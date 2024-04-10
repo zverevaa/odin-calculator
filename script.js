@@ -23,14 +23,15 @@ const getDigit = (digit) => {
         displayNum = `0.`;
         display.textContent = displayNum;
     } else {
-        if (firstNum !== null && digit.dataset.digit === ".") {
-            displayNum = firstNum;
+        if (
+            firstNum !== null &&
+            Number(display.textContent) === firstNum &&
+            digit.dataset.digit === "."
+        ) {
+            return;
         }
         displayNum = makeDisplay(displayNum, digit.dataset.digit);
         display.textContent = displayNum;
-        if (firstNum !== null && display.textContent.includes(".")) {
-            firstNum = Number(display.textContent);
-        }
     }
 };
 
