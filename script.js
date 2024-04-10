@@ -12,6 +12,7 @@ const remove = document.querySelector(".rm-last");
 const negative = document.querySelector(".tgl-negative");
 
 const getDigit = (digit) => {
+    if (display.textContent === "0" && digit.dataset.digit === "0") return;
     if (digit.dataset.digit === "." && display.textContent.includes(".")) {
         return;
     } else if (
