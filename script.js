@@ -178,7 +178,7 @@ const operate = (a, b, operator) => {
 
     //Percentage button
     if (operator === "%") {
-        firstNum = percentage(a, b);
+        firstNum = Number(percentage(a, b).toFixed(4));
     }
 
     //Allows to change firstNum after calculation
