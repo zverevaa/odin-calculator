@@ -54,6 +54,7 @@ const allClear = () => {
     document
         .querySelectorAll(".op-active")
         .forEach((op) => op.classList.remove("op-active"));
+    toggleOperatorActive("Delete");
 };
 const clear = document.querySelector(".clear");
 clear.addEventListener("click", allClear);
@@ -61,6 +62,7 @@ clear.addEventListener("click", allClear);
 //Remove last digit
 
 const removeLastDigit = () => {
+    toggleOperatorActive("Backspace");
     if (display.textContent === "0") return; // Checks if there's anything to delete
     if (firstNum && display.textContent === firstNum.toString()) return; // If there was a calculation, it doesn't let to edit the num
 
@@ -85,6 +87,7 @@ const toggleNegative = () => {
     }
 
     display.textContent = displayNum;
+    toggleOperatorActive("neg");
 };
 
 negative.addEventListener("click", toggleNegative);
@@ -152,6 +155,7 @@ const toggleOperatorActive = (operator) => {
     );
     operatorElement.classList.add("op-active");
     if (["Enter", "Backspace", "Delete", "neg", "%"].includes(operator)) {
+        console.log("a");
         operatorElement.addEventListener("transitionend", () =>
             operatorElement.classList.remove("op-active")
         );
