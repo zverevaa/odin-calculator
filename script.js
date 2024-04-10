@@ -51,6 +51,9 @@ const allClear = () => {
     display.classList.remove("you-died");
     prevOperator = "";
     operator = "";
+    document
+        .querySelectorAll(".op-active")
+        .forEach((op) => op.classList.remove("op-active"));
 };
 const clear = document.querySelector(".clear");
 clear.addEventListener("click", allClear);
@@ -96,18 +99,22 @@ window.addEventListener("keydown", (e) => {
     switch (e.key) {
         case "Backspace":
             removeLastDigit();
+            toggleOperatorActive(e.key);
             break;
         case "+":
         case "-":
         case "/":
         case "*":
+            toggleOperatorActive(e.key);
             operate(firstNum, secondNum, e.key);
             break;
         case "Delete":
             allClear();
+            toggleOperatorActive(e.key);
             break;
         case "Enter":
             operate(firstNum, secondNum, operator);
+            toggleOperatorActive(e.key);
             break;
     }
 });
@@ -136,8 +143,24 @@ const percentage = (a, b) => {
     return (a / 100) * b;
 };
 
+const toggleOperatorActive = (operator) => {
+    document
+        .querySelectorAll(".op-active")
+        .forEach((op) => op.classList.remove("op-active"));
+    const operatorElement = document.querySelector(
+        `button[data-operator="${operator}"]`
+    );
+    operatorElement.classList.add("op-active");
+    if (["Enter", "Backspace", "Delete", "neg", "%"].includes(operator)) {
+        operatorElement.addEventListener("transitionend", () =>
+            operatorElement.classList.remove("op-active")
+        );
+    }
+};
+
 const operate = (a, b, operator) => {
     if (a === null && operator === "=") return; //Checks if there's anything to calculate
+    if (firstNum === 0 && secondNum === 0) return;
 
     if (firstNum === null) {
         firstNum = Number(displayNum);
@@ -182,7 +205,8 @@ const operate = (a, b, operator) => {
 };
 
 operators.forEach((operator) =>
-    operator.addEventListener("click", () =>
-        operate(firstNum, secondNum, operator.textContent)
-    )
+    operator.addEventListener("click", () => {
+        operate(firstNum, secondNum, operator.textContent);
+        toggleOperatorActive(operator.dataset.operator);
+    })
 );
