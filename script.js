@@ -164,7 +164,6 @@ const toggleOperatorActive = (operator) => {
 
 const operate = (a, b, operator) => {
     if (a === null && operator === "=") return; //Checks if there's anything to calculate
-    if (firstNum === 0 && secondNum === 0) return;
 
     if (firstNum === null) {
         firstNum = Number(displayNum);
@@ -175,9 +174,16 @@ const operate = (a, b, operator) => {
         b = secondNum;
     }
 
+    if (firstNum === 0 && secondNum === 0) return; // To avoid crash while switching between operators with no values
+
     //Percentage button
     if (operator === "%") {
         firstNum = percentage(a, b);
+    }
+
+    //Allows to change firstNum after calculation
+    if (prevOperator !== "" && firstNum !== null && operator !== "%") {
+        firstNum = Number(display.textContent);
     }
 
     if (prevOperator === "" || operator === "%") {
