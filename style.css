@@ -20,7 +20,7 @@ body {
 }
 
 .calculator {
-    background-color: #987794;
+    background-color: #135D66;
     width: 300px;
 
     border-radius: 10px;
@@ -29,7 +29,7 @@ body {
 
 .display {
     font-family: "Kode Mono";
-    background-color: #ECEAEC;
+    background-color: #E3FEF7;
     border-radius: 5px;
     height: 60px;
     margin-bottom: 20px;
@@ -55,7 +55,8 @@ body {
     height: 300px;
 }
 
-button {  
+button {
+    background-color: #E3FEF7;
     border: 0;
     border-radius: 3px;
     flex: 1 0 24%;
@@ -71,10 +72,11 @@ button:active {
 
 button:hover {
     cursor: pointer;
+    opacity: 0.8;
 }
 
 .op-active {
-    background-color: #B4C4B1;
+    background-color: #FFF8DC;
     border: 0;
     border-radius: 3px;
 }

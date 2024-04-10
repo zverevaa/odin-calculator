@@ -155,7 +155,6 @@ const toggleOperatorActive = (operator) => {
     );
     operatorElement.classList.add("op-active");
     if (["Enter", "Backspace", "Delete", "neg", "%"].includes(operator)) {
-        console.log("a");
         operatorElement.addEventListener("transitionend", () =>
             operatorElement.classList.remove("op-active")
         );
