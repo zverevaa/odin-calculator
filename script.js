@@ -117,7 +117,7 @@ window.addEventListener("keydown", (e) => {
             toggleOperatorActive(e.key);
             break;
         case "Enter":
-            operate(firstNum, secondNum, operator);
+            operate(firstNum, secondNum, e.key);
             toggleOperatorActive(e.key);
             break;
     }
